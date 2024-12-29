@@ -38,14 +38,14 @@ export class RecipeService {
     return this.http.put(url, recipeResponses);
   }
 
-  // getIngredients(){
-  //   const url = `${this.BASE_URL}/ingredients`;
-  //   const ingredients = this.http.get<IngredientsResponse[]>(url).pipe(
-  //     tap(ingredientsResponses => console.table(ingredientsResponses)),
-  //     map(ingredientsResponses => ingredientsResponses.map(toIngredients))
-  //   );
-  //   return ingredients;
-  // }
+  getIngredients(){
+    const url = `${this.BASE_URL}/ingredients`;
+    const ingredients = this.http.get<IngredientsResponse[]>(url).pipe(
+      tap(ingredientsResponses => console.table(ingredientsResponses)),
+      map(ingredientsResponses => ingredientsResponses.map(toIngredients))
+    );
+    return ingredients;
+  }
 
 
 }
