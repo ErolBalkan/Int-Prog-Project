@@ -1,0 +1,57 @@
+<table>
+    <thead>
+        <tr>
+            <th (click)="sortById()">ID</th>
+            <th (click)="sortByTitle()">Title</th>
+            <th (click)="sortByCui()">Cuisine</th>
+            <th>Description</th>
+            <th>Ingredients</th> <!-- Ova pokazuva problem -->
+            <th>Instructions</th>
+            <th (click)="sortByTime()">Time</th>
+            <th (click)="sortBySer()">Servings</th>
+            <th>Selection</th> <!-- Ova ne treba da se sortira! -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let recipe of recipes">
+            <td>{{ recipe.id }}</td>
+            <td>{{ recipe.title }}</td>
+            <td>{{ recipe.cuisine }}</td>
+            <td>{{ recipe.description }}</td>
+            <td>
+                <ul>
+                  <li *ngFor="let ingredient of recipe.ingredients">
+                    {{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.name }}
+                  </li>
+                </ul>
+              </td> <!-- Ova pokazuva problem --> <!-- Ova izgleda deka e kako oskar primerot -->
+            <td>{{ recipe.instructions }}</td>
+            <td>{{ recipe.time }}</td>
+            <td>{{ recipe.servings }}</td>
+            <td>
+                <button (click)="ingRecipe(recipe.id)">Ingredients</button>
+                <button (click)="cuiRecipe(recipe.id)">Cuisine</button>
+                <button (click)="viewRecipe(recipe.id)">View</button>
+                <button (click)="editRecipe(recipe.id)">Edit</button>
+                <button (click)="deleteRecipe(recipe.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- {{recipes | json}} -->
+
+<!-- {
+    "id": "number", // the unique identifier of the recipe
+    "title": "string", // the title of the recipe
+    "cuisine": "string", // the cuisine of the recipe
+    "description": "string", // the description of the recipe
+    "ingredients": [{
+        "name": "string", // the name of the ingredient, must be a valid ingredient from the ingredients endpoint
+        "quantity": "number", // the quantity of the ingredient, in the unit specified
+        "unit": "string" // the unit of the ingredient (e.g. grams, cups, etc.). It can also be an empty string.
+    }], // an array of objects, each object is an ingredient
+    "instructions": "string", // a string that contains the instructions for the recipe
+    "time": "number", // the time it takes to prepare the recipe, in minutes
+    "servings": "number", // the number of servings the recipe makes
+} -->
